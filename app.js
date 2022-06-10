@@ -1,14 +1,12 @@
 require('dotenv').config();
 
 const express = require('express');
-const http = require('http');
 const jwt = require('jsonwebtoken');		
 const bcrypt = require('bcrypt');;
 const users = require('./src/configs/data').userDB;
 
 
 const app = express();
-const server = http.createServer(app);
 
 var refreshTokensDB = [];		// to store the refresh tokens when they are generated.
 
@@ -147,6 +145,7 @@ app.delete('/delRefreshToken', (req,res) => {
 	
 });
 
-server.listen(4000, function(){
-    console.log("Authentication server is listening on port: 4000");
+app.set('port', (process.env.PORT || 8080));
+app.listen(app.get('port'), function(){
+    console.log("Authentication server is listening on port: ", app.get('port'));
 });
