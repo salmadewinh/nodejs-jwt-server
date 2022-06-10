@@ -12,6 +12,14 @@ var refreshTokensDB = [];		// to store the refresh tokens when they are generate
 
 app.use(express.json());
 
+app.get('/', function (req, res) {
+	res.json({
+	  type: 'get',
+	  number: 1,
+	  nama: 'Okyza Maherdy Prabowo',
+	  npm: '33220025'
+	});
+  })
 
 // This endpoint will register new user
 app.post('/register', async (req, res) => {
